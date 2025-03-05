@@ -7,7 +7,7 @@ import { Task } from './task';
     providedIn: 'root'
 })
 export class TaskService {
-    private apiUrl = 'http://localhost:5028/api/tasks'; // Adjust port if different
+    private apiUrl = 'https://taskmanagerapi-gcc8.onrender.com/api/tasks'; // Adjust port if different
 
     constructor(private http: HttpClient) { }
 
