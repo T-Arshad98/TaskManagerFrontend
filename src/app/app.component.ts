@@ -18,7 +18,7 @@ import { LoginComponent } from './shared/components/login.component';
 })
 
 export class AppComponent {
-  title = 'TaskManagerFrontend';
+  title = 'taskmanagerfrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
   constructor(private taskService: TaskService, private authService: AuthService) { 
