@@ -1,17 +1,11 @@
-import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { User } from '@angular/fire/auth';
 import { Task } from './shared/models/task';
-import { TaskService } from './core/services/task/task.service';
-import { AuthService } from './core/services/auth/auth.service';
-import { FilterTasksPipe } from './shared/pipes/filter-tasks.pipe';
-import { LoginComponent } from './shared/components/login.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -21,7 +15,7 @@ export class AppComponent {
   title = 'taskmanagerfrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
-  constructor(private taskService: TaskService, private authService: AuthService) { 
+  constructor() { 
 
   }
 
