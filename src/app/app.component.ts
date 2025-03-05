@@ -4,10 +4,13 @@ import { TaskService } from './task.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FilterTasksPipe } from './filter-tasks.pipe';
-
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '@angular/fire/auth';
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, FilterTasksPipe],
+  imports: [FormsModule, CommonModule, FilterTasksPipe, LoginComponent],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -17,12 +20,17 @@ export class AppComponent {
   title = 'TaskManagerFrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false };
-
-  constructor(private taskService: TaskService) { }
+  user$: Observable<User | null>;
+  constructor(private taskService: TaskService, private authService: AuthService) { 
+    this.user$ = this.authService.user$;
+  }
 
   editingTask: Task | null = null;  // Add this line
   showCompleted: boolean = true;
 
+  logout() {
+    this.authService.logout();
+  }
 
   cancelEdit() {
     this.editingTask = null;
