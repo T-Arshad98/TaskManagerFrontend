@@ -1,59 +1,31 @@
-# Taskmanagerfrontend
+# Angular on Firebase App Hosting
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+This is an example [Angular](https://angular.dev/) project to demonstrate SSG,
+SSR, and deferrable views on [Firebase App Hosting](https://firebase.google.com/docs/app-hosting).
 
-## Development server
+## Getting Started
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Run the development server:
 
 ```bash
-ng generate component component-name
+npm run start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open [http://localhost:4200](http://localhost:4200) with your browser to see the result.
 
-```bash
-ng generate --help
-```
+## Deploy to Firebase App Hosting
 
-## Building
+### 1. Get your project set up on GitHub
 
-To build the project run:
+[Create a new GitHub repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)
+and push the newly-initialized sample code to it:
 
-```bash
-ng build
-```
+<pre>
+git remote add origin https://github.com/<b>$YOUR_NEW_REPOSITORY</b>.git
+git branch -M main
+git push -u origin main
+</pre>
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 2. Set up Firebase App Hosting
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Continue to [Get started with Firebase App Hosting](https://firebase.google.com/docs/app-hosting/get-started#step-1:).
