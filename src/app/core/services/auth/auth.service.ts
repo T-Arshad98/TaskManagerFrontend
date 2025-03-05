@@ -12,11 +12,11 @@ export class AuthService {
 /*   user$: Observable<User | null>;
  */
   constructor(private afAuth: Auth) {
-    try {
+/*     try {
       this.afAuth = getAuth();
     } catch (error) {
       console.error('Error initializing Firebase Auth:', error);
-    }
+    } */
 /*     this.setSessionStoragePersistence();
     this.user$ = user(this.afAuth); */
   }
