@@ -10,5 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideClientHydration(withEventReplay()), 
     provideHttpClient(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig))
   ]
 };
