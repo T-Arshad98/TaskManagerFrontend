@@ -10,9 +10,9 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 const indexHtml = join(serverDistFolder, 'index.server.html');
 
-const app = express();​
+const app = express();
 const commonEngine = new CommonEngine()
-​
+
 export async function netlifyCommonEngineHandler(request: Request, context: any): Promise<Response> {
   return await render(commonEngine)
 }
