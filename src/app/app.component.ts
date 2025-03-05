@@ -11,7 +11,7 @@ import { LoginComponent } from './shared/components/login.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, FilterTasksPipe, LoginComponent],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -21,11 +21,11 @@ export class AppComponent {
   title = 'TaskManagerFrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
-/*   constructor(private taskService: TaskService, private authService: AuthService) { 
+  user$: Observable<User | null>;
+  constructor(private taskService: TaskService, private authService: AuthService) { 
     this.user$ = this.authService.user$;
-  } */
-    constructor() { 
-    }
+  }
+
   editingTask: Task | null = null;  // Add this line
   showCompleted: boolean = true;
 
