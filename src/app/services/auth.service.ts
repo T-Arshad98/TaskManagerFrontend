@@ -3,7 +3,6 @@ import { Auth, user } from '@angular/fire/auth';
 import { browserSessionPersistence, setPersistence, signInWithPopup, User } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { signOut } from 'firebase/auth';
-import firebase from 'firebase/compat/app';
 import { from } from 'rxjs';
 import { Observable } from 'rxjs';
 
