@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Optional, REQUEST, REQUEST_CONTEXT } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -7,11 +7,18 @@ import { AuthService } from '../services/auth.service';
     template: `
     <div class="container mt-5">
       <h2>Login with Google</h2>
-      <button (click)="authService.googleLogin()" class="btn btn-primary">Login with Google</button>
+      <button (click)="login()" class="btn btn-primary">Login with Google</button>
     </div>
   `
-})  
+})
 export class LoginComponent {
-    authService: AuthService = inject(AuthService);
-
+    constructor(private authService: AuthService) { }
+    
+    login() {
+        this.authService.googleLogin().then(() => {
+          console.log('User logged in');
+        }).catch(error => {
+          console.error('Login failed', error);
+        });
+      }
 }
