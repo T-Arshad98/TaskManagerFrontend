@@ -19,7 +19,7 @@ import { User } from '@angular/fire/auth';
 export class AppComponent {
   title = 'TaskManagerFrontend';
   tasks: Task[] = [];
-  newTask: Task = { title: '', description: '', isCompleted: false };
+  newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
   user$: Observable<User | null>;
   constructor(private taskService: TaskService, private authService: AuthService) { 
     this.user$ = this.authService.user$;
@@ -37,6 +37,11 @@ export class AppComponent {
   }
   
   ngOnInit() {
+    this.user$.subscribe(user => {
+      if (user) {
+        this.newTask.userId = user.uid; // Use uid or displayName as needed
+      }
+    });
     this.getTasks();
   }
 
@@ -47,7 +52,7 @@ export class AppComponent {
   addTask() {
     this.taskService.addTask(this.newTask).subscribe(task => {
       this.tasks.push(task);
-      this.newTask = { title: '', description: '', isCompleted: false };
+      this.newTask = { title: '', description: '', isCompleted: false, userId: this.newTask.userId};
     });
   }
 
