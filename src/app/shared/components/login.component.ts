@@ -1,15 +1,10 @@
-import { Component, inject, Optional, REQUEST, REQUEST_CONTEXT } from '@angular/core';
+import { Component} from '@angular/core';
 import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    template: `
-    <div class="container mt-5">
-      <h2>Login with Google</h2>
-<!--       <button (click)="login()" class="btn btn-primary">Login with Google</button>
- -->    </div>
-  `
+    templateUrl: './login.component.html',
 })
 export class LoginComponent {
     constructor(private authService: AuthService) { }

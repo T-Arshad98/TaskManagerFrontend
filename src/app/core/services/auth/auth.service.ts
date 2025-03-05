@@ -1,11 +1,8 @@
-import { from } from 'rxjs';
-import { Observable } from 'rxjs';
+
 import { Injectable } from '@angular/core';
 import { Auth, user } from '@angular/fire/auth';
 import { getAuth } from 'firebase/auth';
-import { browserSessionPersistence, setPersistence, signInWithPopup, User } from 'firebase/auth';
-import { GoogleAuthProvider } from 'firebase/auth';
-import { signOut } from 'firebase/auth';
+
 
 
 @Injectable({
