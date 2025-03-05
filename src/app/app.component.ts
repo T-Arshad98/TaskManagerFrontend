@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Task } from './shared/models/task';
-
+import { AuthService } from './core/services/auth/auth.service';
 @Component({
   selector: 'app-root',
   imports: [FormsModule, CommonModule],
@@ -15,7 +15,7 @@ export class AppComponent {
   title = 'taskmanagerfrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
-  constructor() { 
+  constructor(private authService: AuthService) { 
 
   }
 
