@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
-    "@angular/ssr": "^19.2.0",
     "@netlify/angular-runtime": "^2.2.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
