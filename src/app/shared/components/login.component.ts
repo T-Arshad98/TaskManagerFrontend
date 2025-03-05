@@ -15,10 +15,10 @@ export class LoginComponent {
     constructor(private authService: AuthService) { }
     
     login() {
-        this.authService.googleLogin().then(() => {
+/*         this.authService.googleLogin().then(() => {
           console.log('User logged in');
         }).catch(error => {
           console.error('Login failed', error);
-        });
+        }); */
       }
 }
