@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, user } from '@angular/fire/auth';
+import { getAuth } from 'firebase/auth';
 import { browserSessionPersistence, setPersistence, signInWithPopup, User } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { signOut } from 'firebase/auth';
@@ -13,6 +14,11 @@ export class AuthService {
   user$: Observable<User | null>;
 
   constructor(private afAuth: Auth) {
+    try {
+      this.afAuth = getAuth();
+    } catch (error) {
+      console.error('Error initializing Firebase Auth:', error);
+    }
     this.setSessionStoragePersistence();
     this.user$ = user(this.afAuth);
   }
