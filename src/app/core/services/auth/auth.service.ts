@@ -1,7 +1,5 @@
 
 import { Injectable } from '@angular/core';
-import { Auth, user } from '@angular/fire/auth';
-import { getAuth } from 'firebase/auth';
 
 
 
@@ -11,7 +9,7 @@ import { getAuth } from 'firebase/auth';
 export class AuthService {
 /*   user$: Observable<User | null>;
  */
-  constructor(private afAuth: Auth) {
+  constructor() {
 /*     try {
       this.afAuth = getAuth();
     } catch (error) {
