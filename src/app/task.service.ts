@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Task } from './task';
 import { switchMap } from 'rxjs/operators';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
