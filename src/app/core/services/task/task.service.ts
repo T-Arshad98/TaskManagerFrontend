@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Task } from '../../../shared/models/task';
 import { switchMap } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
+import { User } from '@angular/fire/auth';
 
 @Injectable({
     providedIn: 'root'
@@ -12,10 +12,10 @@ import { AuthService } from '../auth/auth.service';
 export class TaskService {
     private apiUrl = 'https://taskmanagerapi-gcc8.onrender.com/api/tasks'; // Adjust port if different
 
-    constructor(private http: HttpClient, private authService: AuthService) { }
+    constructor(private http: HttpClient) { }
 
-    getTasks(): Observable<any[]> {
-        return this.authService.getUser().pipe(
+    getTasks(user: User): Observable<any[]> {
+        return of(user).pipe(
           switchMap(user => {
             if (user) {
               // Make an API call to get tasks for the logged-in user
