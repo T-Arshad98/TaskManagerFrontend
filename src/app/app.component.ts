@@ -1,15 +1,17 @@
+import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
-import { Task } from './shared/models/task';
-import { TaskService } from './core/services/task/task.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { User } from '@angular/fire/auth';
+import { Task } from './shared/models/task';
+import { TaskService } from './core/services/task/task.service';
+import { AuthService } from './core/services/auth/auth.service';
 import { FilterTasksPipe } from './shared/pipes/filter-tasks.pipe';
 import { LoginComponent } from './shared/components/login.component';
-import { Observable } from 'rxjs';
-import { User } from '@angular/fire/auth';
+
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, FilterTasksPipe],
+  imports: [FormsModule, CommonModule, FilterTasksPipe, LoginComponent],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -19,18 +21,30 @@ export class AppComponent {
   title = 'TaskManagerFrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
-  constructor(private taskService: TaskService) { 
+  user$: Observable<User | null>;
+  constructor(private taskService: TaskService, private authService: AuthService) { 
+    this.user$ = this.authService.user$;
   }
 
   editingTask: Task | null = null;  // Add this line
   showCompleted: boolean = true;
 
-
+  logout() {
+    this.authService.logout();
+  }
 
   cancelEdit() {
     this.editingTask = null;
   }
-
+  
+  ngOnInit() {
+    this.user$.subscribe(user => {
+      if (user) {
+        this.newTask.userId = user.uid; // Use uid or displayName as needed
+      }
+    });
+    this.getTasks();
+  }
 
   getTasks() {
     this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
