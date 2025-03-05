@@ -5,12 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FilterTasksPipe } from './shared/pipes/filter-tasks.pipe';
 import { LoginComponent } from './shared/components/login.component';
-import { AuthService } from './core/services/auth/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, FilterTasksPipe, LoginComponent],
+  imports: [FormsModule, CommonModule, FilterTasksPipe],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -20,30 +19,18 @@ export class AppComponent {
   title = 'TaskManagerFrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
-  user$: Observable<User | null>;
-  constructor(private taskService: TaskService, private authService: AuthService) { 
-    this.user$ = this.authService.user$;
+  constructor(private taskService: TaskService) { 
   }
 
   editingTask: Task | null = null;  // Add this line
   showCompleted: boolean = true;
 
-  logout() {
-    this.authService.logout();
-  }
+
 
   cancelEdit() {
     this.editingTask = null;
   }
-  
-  ngOnInit() {
-    this.user$.subscribe(user => {
-      if (user) {
-        this.newTask.userId = user.uid; // Use uid or displayName as needed
-      }
-    });
-    this.getTasks();
-  }
+
 
   getTasks() {
     this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);

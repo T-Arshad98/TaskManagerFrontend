@@ -1,8 +1,7 @@
 <main class="bg-light min-vh-100 py-5">
-  <app-login *ngIf="!(user$ | async)"></app-login>
-  <div *ngIf="user$ | async">
-    <h1>Welcome, {{ (user$ | async)?.displayName }}</h1>
-    <button (click)="logout()" class="btn btn-primary">Logout</button>
+
+  <div >
+
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
