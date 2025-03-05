@@ -10,9 +10,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-    user$: Observable<User | null>;
+  user$: Observable<User | null>;
 
-  
   constructor(private afAuth: Auth) {
     this.setSessionStoragePersistence();
     this.user$ = user(this.afAuth);

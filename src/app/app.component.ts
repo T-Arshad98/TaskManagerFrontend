@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FilterTasksPipe } from './filter-tasks.pipe';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
 @Component({
