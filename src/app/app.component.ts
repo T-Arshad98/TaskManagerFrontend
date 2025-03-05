@@ -21,9 +21,7 @@ export class AppComponent {
   title = 'TaskManagerFrontend';
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
-  user$: Observable<User | null>;
-  constructor(private taskService: TaskService, private authService: AuthService) { 
-    this.user$ = this.authService.user$;
+  constructor() { 
   }
 
   editingTask: Task | null = null;  // Add this line
