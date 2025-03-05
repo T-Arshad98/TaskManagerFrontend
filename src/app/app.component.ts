@@ -11,7 +11,7 @@ import { LoginComponent } from './shared/components/login.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, FilterTasksPipe, LoginComponent],
+  imports: [FormsModule],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
