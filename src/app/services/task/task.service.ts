@@ -18,10 +18,9 @@ export class TaskService {
         return of(user).pipe(
           switchMap(user => {
             if (user) {
-              // Make an API call to get tasks for the logged-in user
               return this.http.get<any[]>(`${this.apiUrl}?userId=${user.uid}`);
             } else {
-              return of([]); // Return an empty array if no user is logged in
+              return of([]);
             }
           })
         );

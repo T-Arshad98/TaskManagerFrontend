@@ -3,17 +3,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '@angular/fire/auth';
-import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { filter, map, startWith } from 'rxjs';
-import { AngularIconComponent } from './components/icons/angular-icon.component';
-import { FirebaseIconComponent } from './components/icons/firebase-icon.component';
-import { ArrowBackIconComponent } from './components/icons/arrow-back-icon.component';
 
 import { Task } from './shared/models/task';
 import { TaskService } from './services/task/task.service';
 import { FilterTasksPipe } from './shared/pipes/filter-tasks.pipe';
 import { LoginComponent } from './shared/components/login.component';
 import { AuthService } from './services/auth/auth.service';
+
 import { Observable } from 'rxjs';
 @Component({
     selector: 'app-root',
@@ -28,15 +24,6 @@ export class AppComponent {
   tasks: Task[] = [];
   newTask: Task = { title: '', description: '', isCompleted: false, userId: '' };
   user$: Observable<User | null>;
-
-  private readonly router = inject(Router);
-  private readonly isMainPage$ = this.router.events.pipe(
-    filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-    map((event: NavigationEnd) => event.url === '/'),
-    startWith(true)
-  );
-
-  isMainPage = toSignal(this.isMainPage$);
 
   constructor(private taskService: TaskService, private authService: AuthService) { 
     this.user$ = this.authService.user$;
