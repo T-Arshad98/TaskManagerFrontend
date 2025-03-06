@@ -1,27 +1,22 @@
 
 import { Injectable, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
-
-
+import { Auth, user } from '@angular/fire/auth';
+import { from } from 'rxjs';
+import { Observable } from 'rxjs';
+import { GoogleAuthProvider, User, browserSessionPersistence, setPersistence, signInWithPopup, signOut } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private auth = inject(Auth);
-/*   user$: Observable<User | null>;
- */
-  constructor() {
-/*     try {
-      this.afAuth = getAuth();
-    } catch (error) {
-      console.error('Error initializing Firebase Auth:', error);
-    } */
-/*     this.setSessionStoragePersistence();
-    this.user$ = user(this.afAuth); */
+  user$: Observable<User | null>;
+
+  constructor(private afAuth: Auth) {
+    this.setSessionStoragePersistence();
+    this.user$ = user(this.afAuth);
   }
 
-/*   private setSessionStoragePersistence(): void {
+  private setSessionStoragePersistence(): void {
     setPersistence(this.afAuth, browserSessionPersistence);
   }
 
@@ -51,5 +46,5 @@ export class AuthService {
       throw error;
     }
   }
- */
+
 }

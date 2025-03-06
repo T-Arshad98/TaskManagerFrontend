@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Task } from '../../../shared/models/task';
+import { Task } from '../../shared/models/task';
 import { switchMap } from 'rxjs/operators';
 import { User } from '@angular/fire/auth';
 

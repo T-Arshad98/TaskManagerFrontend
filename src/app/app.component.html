@@ -1,4 +1,97 @@
 <main class="bg-light min-vh-100 py-5">
-
+  <app-login *ngIf="!(user$ | async)"></app-login>
+  <div *ngIf="user$ | async">
+    <h1>Welcome, {{ (user$ | async)?.displayName }}</h1>
+    <button (click)="logout()" class="btn btn-primary">Logout</button>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h1 class="text-center mb-4">Task Manager</h1>
+  
+              <div class="task-form bg-light p-4 rounded mb-4">
+                <div class="row g-3">
+                  <div class="col-md-5">
+                    <input class="form-control" [(ngModel)]="newTask.title" placeholder="Title" />
+                  </div>
+                  <div class="col-md-5">
+                    <input class="form-control" [(ngModel)]="newTask.description" placeholder="Description" />
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-check mt-2">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="newTask.isCompleted" id="taskComplete">
+                      <label class="form-check-label" for="taskComplete">Completed</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" (click)="addTask()">
+                      <i class="bi bi-plus-circle me-2"></i>Add Task
+                    </button>
+                  </div>
+  
+                </div>
+              </div>
+              <!-- Add this toggle button below the title -->
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="showCompleted" [(ngModel)]="showCompleted">
+                <label class="form-check-label" for="showCompleted">Show Completed Tasks</label>
+              </div>
+  
+              <!-- Modify the *ngFor to filter tasks -->
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let task of tasks | filterTasks:showCompleted">
+  
+                  <div *ngIf="editingTask?.id === task.id; else displayTask">
+                    <div class="row g-3">
+                      <div class="col-md-5">
+                        <input class="form-control" [(ngModel)]="editingTask!.title" placeholder="Title" />
+                      </div>
+                      <div class="col-md-5">
+                        <input class="form-control" [(ngModel)]="editingTask!.description" placeholder="Description" />
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" [(ngModel)]="editingTask!.isCompleted"
+                            id="editTaskComplete">
+                          <label class="form-check-label" for="editTaskComplete">Completed</label>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="btn-group w-100">
+                          <button class="btn btn-success" (click)="updateTask()">
+                            <i class="bi bi-check-circle me-2"></i>Save
+                          </button>
+                          <button class="btn btn-secondary" (click)="cancelEdit()">
+                            <i class="bi bi-x-circle me-2"></i>Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #displayTask>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span [class.text-decoration-line-through]="task.isCompleted" [class.text-muted]="task.isCompleted">
+                        <strong>{{ task.title }}</strong>
+                        <span class="ms-2 text-muted">{{ task.description }}</span>
+                      </span>
+                      <div class="btn-group">
+                        <button class="btn btn-outline-primary btn-sm" (click)="editTask(task)">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteTask(task.id!)">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </main>
