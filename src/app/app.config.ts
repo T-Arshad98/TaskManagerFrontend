@@ -1,10 +1,16 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { WINDOW, windowProvider } from './providers/window';
 import { DOCUMENT } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
+import { environment } from '../environments/environment';
+import { provideAuth } from '@angular/fire/auth';
+import { getAuth } from 'firebase/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -14,5 +20,9 @@ export const appConfig: ApplicationConfig = {
       useFactory: (document: Document) => windowProvider(document),
       deps: [DOCUMENT],
     },
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideHttpClient(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
   ]
 };
