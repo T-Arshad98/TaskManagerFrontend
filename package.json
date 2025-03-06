@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --platform 'node'",
+    "build": "ng build ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:firebase-app-hosting-angular": "LOCAL=true node dist/firebase-app-hosting-angular/server/server.mjs"

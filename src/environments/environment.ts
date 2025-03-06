@@ -1,30 +1,19 @@
-import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
-const secrets = new SecretManagerServiceClient();
-
-async function getSecretValue(name: string) {
-  const [version] = await secrets.accessSecretVersion({
-    name: `projects/404785636178/secrets/${name}/versions/latest`,
-  });
-  const payload = version.payload?.data?.toString();
-  return payload;
-}
-
 export const environment = {
-  production: true,
+  production: false,
   firebaseConfig: {
-    apiKey: await getSecretValue('API_KEY'),
+    apiKey: "AIzaSyBTzwIYp3-Qs_EAj8j9zikuu01XA5vvme4",
   
-    authDomain: "taskmanager-e27ea.firebaseapp.com ",
+    authDomain: "taskmanager-e27ea.firebaseapp.com",
   
     projectId: "taskmanager-e27ea",
   
     storageBucket: "taskmanager-e27ea.firebasestorage.app",
   
-    messagingSenderId: await getSecretValue('MESSAGING_SENDER_ID'),
+    messagingSenderId: "404785636178",
   
-    appId: await getSecretValue('APP_ID'),
+    appId: "1:404785636178:web:92167d92ab877f9975108b",
   
-    measurementId: await getSecretValue('MEASUREMENT_ID')
+    measurementId: "G-16BS8BQTVE"
     
   }
 }; 
