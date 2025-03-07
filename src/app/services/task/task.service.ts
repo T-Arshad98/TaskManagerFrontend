@@ -10,7 +10,7 @@ import { User } from '@angular/fire/auth';
 })
 
 export class TaskService {
-    private apiUrl = 'https://taskmanagerapi-gcc8.onrender.com/api/tasks'; // Adjust port if different
+    private apiUrl = 'https://taskmanapi.azurewebsites.net/api/tasks'; // Adjust port if different
 
     constructor(private http: HttpClient) { }
 
